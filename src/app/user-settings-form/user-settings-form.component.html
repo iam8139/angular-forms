@@ -49,9 +49,9 @@
         <div class="form-group">
             <label for="subscriptionType">Subscription Type</label>
             <select class="form-control" id="subscriptionType" name="subscriptionType" [(ngModel)]="userSettings.subscriptionType" >
-                <option>Monthly</option>
-                <option>Annual</option>
-                <option>Lifetime</option>
+                <option *ngFor="let type of subscriptionType | async">
+                    {{ type }}
+                </option>
             </select>
         </div>
 
@@ -65,6 +65,9 @@
             <input type="date" id="dob" name="dob" class="form-control" ngModel/>
         </div>
 
+        <div [hidden]="!postError" class="alert alert-danger">
+            {{ postErrorMessage }}
+        </div>
         <button class="btn btn-primary">Submit</button>
     </form>
 </div>
