@@ -19,6 +19,8 @@ export class UserSettingsFormComponent implements OnInit {
     notes: 'My name is kargil...'
   }
 
+  singleModel = 'ON';
+  startDate!: Date;
   userSettings: UserSettings = {...this.originalUserSettings};
   postError: boolean = false;
   postErrorMessage: string = '';
@@ -29,10 +31,12 @@ export class UserSettingsFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscriptionType = this.dataService.getSubscriptionTypes();
+    this.startDate = new Date();
   }
 
   onSubmit(form: NgForm) {
     console.log("in onSubmit: " + form.valid);
+    console.log("form values: ", form.value);
     if (form.valid) {
       this.dataService.postUserSettingsForm(this.userSettings).subscribe(
         result => console.log('sucess', result),
