@@ -3,6 +3,7 @@ import { UserSettings } from '../data/user-settings';
 import { NgForm, NgModel } from '@angular/forms';
 import { DataService } from '../data/data.service';
 import { Observable } from 'rxjs';
+import { Time } from '@angular/common';
 
 @Component({
   selector: 'app-user-settings-form',
@@ -21,6 +22,10 @@ export class UserSettingsFormComponent implements OnInit {
 
   singleModel = 'ON';
   startDate!: Date;
+  startTime!: Date;
+  userRating: number = 0;
+  maxRating: number = 10;
+  isReadonly: boolean = false;
   userSettings: UserSettings = {...this.originalUserSettings};
   postError: boolean = false;
   postErrorMessage: string = '';
@@ -32,6 +37,7 @@ export class UserSettingsFormComponent implements OnInit {
   ngOnInit(): void {
     this.subscriptionType = this.dataService.getSubscriptionTypes();
     this.startDate = new Date();
+    this.startTime = new Date();
   }
 
   onSubmit(form: NgForm) {

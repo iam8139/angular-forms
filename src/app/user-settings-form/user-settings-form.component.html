@@ -28,6 +28,18 @@
         </div>
 
         <div class="form-group">
+            <label for="startTime">Start Time</label>
+            <timepicker [(ngModel)]="startTime" name="startTime" id="startTime"></timepicker>
+        </div>
+
+        <div class="form-group">
+            User Rating
+            <rating [(ngModel)]="userRating" [max]="maxRating" [readonly]="isReadonly"
+                name="userRating" id="userRating"
+                [titles]="['one','two','three']"></rating>
+        </div>
+
+        <div class="form-group">
             <label for="age">Age</label>
             <input id="age" name="age" class="form-control" type="number" min="18" max="25" ngModel/>
         </div>
